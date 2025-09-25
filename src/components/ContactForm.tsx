@@ -24,9 +24,9 @@ export const ContactForm = () => {
 
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             {/* CTA Card */}
-            <Card className="p-8 bg-background/95 backdrop-blur-sm border-background/20">
+            <Card className="p-6 bg-background/95 backdrop-blur-sm border-background/20">
               <div className="space-y-6">
-                <div className="space-y-4">
+                <div className="p-4 space-y-5">
                   <h3 className="text-2xl font-bold text-card-foreground">
                     Diagnóstico estratégico sin compromiso
                   </h3>
@@ -68,7 +68,7 @@ export const ContactForm = () => {
             </Card>
 
             {/* Benefits */}
-            <div className="space-y-6 text-left">
+            <div className="p-7 space-y-6 text-left">
               <h3 className="text-2xl font-bold text-primary-foreground">
                 En esta sesión obtendrás:
               </h3>

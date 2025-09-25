@@ -1,10 +1,16 @@
-import { ArrowUpRight, Building, TrendingUp, DollarSign } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import constructoraBolivar from '@/assets/constructora-bolivar.png';
+import scarsaBoutique from '@/assets/scarsa.webp';
+import lCepeda from '@/assets/lcepeda.png';
+import sirf from '@/assets/sirf.png';
+import lavi from '@/assets/lavi.png';
+import bojanini from '@/assets/bojanini.jpeg';
 
 export const CaseStudies = () => {
   const cases = [
     {
       company: "Constructora Bolívar",
-      icon: Building,
+      Image: constructoraBolivar,
       challenge: "Gestionar estrategia digital para 3 proyectos inmobiliarios activos.",
       solution: "Dirección creativa y operativa de contenido audiovisual, embudos digitales y análisis de comunicación.",
       result: "3400 leads calificados y procesos estandarizados entre ciudades.",
@@ -13,7 +19,7 @@ export const CaseStudies = () => {
     },
     {
       company: "Scarsa Boutique", 
-      icon: TrendingUp,
+      Image: scarsaBoutique,
       challenge: "Transformar su operación de tienda física a digital tras cambio de marca.",
       solution: "Acompañamiento completo por más de un año en estrategia de marca y posicionamiento, contenidos, ecommerce, pauta y capacitación del equipo.",
       result: "1600 millones de pesos en ventas digitales en 3 meses. Hoy operan su marketing de forma independiente.",
@@ -22,7 +28,7 @@ export const CaseStudies = () => {
     },
     {
       company: "LCepeda",
-      icon: DollarSign,
+      Image: lCepeda,
       challenge: "Posicionarla como un referente en el mercado internacional.",
       solution: "Reestructuración estratégica, ecommerce, performance digital y capacitación interna.",
       result: "ROI superior al 1000%. Ventas mensuales de $9.000 USD con $800 USD en pauta.",
@@ -31,7 +37,7 @@ export const CaseStudies = () => {
     },
     {
       company: "SIRF",
-      icon: TrendingUp,
+      Image: sirf,
       challenge: "Estructurar su oferta educativa digital y escalarla comercialmente.",
       solution: "Diagnóstico estratégico, narrativa digital, embudo comercial y pauta.",
       result: "Vendemos más de 140 millones mensuales con un ROI de 28. Oferta digital clara y lista para escalar.",
@@ -40,7 +46,7 @@ export const CaseStudies = () => {
     },
     {
       company: "Lavi by Majo Lavi",
-      icon: DollarSign,
+      Image: lavi,
       challenge: "No contaba con una estrategia clara ni resultados consistentes.",
       solution: "Plan estratégico, contenido alineado y prueba de pauta dirigida.",
       result: "$24.000 USD en ventas con $2.500 USD de inversión en 1 mes.",
@@ -49,7 +55,7 @@ export const CaseStudies = () => {
     },
     {
       company: "Bojanini Experts",
-      icon: TrendingUp,
+      Image: bojanini,
       challenge: "Mejorar el retorno de inversión publicitaria digital.",
       solution: "Dirección de campañas mensuales y optimización de segmentación.",
       result: "13,772 leads calificados en 7 meses con presupuesto fijo de pauta.",
@@ -75,7 +81,7 @@ export const CaseStudies = () => {
 
           <div className="grid lg:grid-cols-2 gap-8">
             {cases.map((caseStudy, index) => {
-              const IconComponent = caseStudy.icon;
+              const ImageComponent = caseStudy.Image;
               return (
                 <div 
                   key={index}
@@ -84,7 +90,11 @@ export const CaseStudies = () => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <IconComponent className="w-5 h-5 text-primary" />
+                        <img 
+                          src={ImageComponent} 
+                          alt={caseStudy.company} 
+                          className="w-8 h-8 object-contain" 
+                        />
                       </div>
                       <h3 className="text-xl font-bold text-card-foreground">
                         {caseStudy.company}

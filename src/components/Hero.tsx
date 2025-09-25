@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Banknote, TrendingUp, Users } from "lucide-react";
-import heroImage from "@/assets/hero-team.jpg";
+import team from "@/assets/team.jpg";
 
 export const Hero = () => {
   const scrollToForm = () => {
@@ -77,7 +77,7 @@ export const Hero = () => {
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-card">
               <img 
-                src={heroImage} 
+                src={team} 
                 alt="Equipo de estrategia digital de Merkabah trabajando en sesión estratégica"
                 className="w-full h-auto object-cover"
                 width={600}
