@@ -36,7 +36,7 @@ export const ContactForm = () => {
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 relative top-[-12px]">
                   <div className="flex items-center gap-3">
                     <Calendar className="w-5 h-5 text-primary" />
                     <span className="text-muted-foreground">45 minutos de análisis</span>
