@@ -1,10 +1,19 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Rocket, TrendingUp, Handshake, DollarSign, Target } from "lucide-react";
 import constructoraBolivar from '@/assets/constructora-bolivar.png';
 import scarsaBoutique from '@/assets/scarsa.webp';
 import lCepeda from '@/assets/lcepeda.png';
 import sirf from '@/assets/sirf.png';
 import lavi from '@/assets/lavi.png';
 import bojanini from '@/assets/bojanini.jpeg';
+
+const metricIcons = {
+  "Leads calificados": Rocket,
+  "Ventas en 3 meses": DollarSign,
+  "de ROI": TrendingUp,
+  "Ventas mensuales": Target,
+  "Ventas en 1 mes": DollarSign,
+  "Leads en 7 meses": Rocket,
+};
 
 export const CaseStudies = () => {
   const cases = [
@@ -82,6 +91,8 @@ export const CaseStudies = () => {
           <div className="grid lg:grid-cols-2 gap-8">
             {cases.map((caseStudy, index) => {
               const ImageComponent = caseStudy.Image;
+              const IconComponent = metricIcons[caseStudy.metricLabel as keyof typeof metricIcons] || Handshake;
+
               return (
                 <div 
                   key={index}
@@ -89,14 +100,14 @@ export const CaseStudies = () => {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                      <div className="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
                         <img 
                           src={ImageComponent} 
                           alt={caseStudy.company} 
-                          className="w-8 h-8 object-contain" 
+                          className="w-24 h-24 object-contain" 
                         />
                       </div>
-                      <h3 className="text-xl font-bold text-card-foreground">
+                      <h3 className="text-2xl font-bold text-card-foreground">
                         {caseStudy.company}
                       </h3>
                     </div>
@@ -105,34 +116,35 @@ export const CaseStudies = () => {
 
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-semibold text-card-foreground mb-2">Reto:</h4>
-                      <p className="text-muted-foreground text-sm">
+                      <h4 className="font-semibold text-card-foreground mb-2 px-10">Reto:</h4>
+                      <p className="text-muted-foreground text-sm px-10">
                         {caseStudy.challenge}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-card-foreground mb-2">Solución:</h4>
-                      <p className="text-muted-foreground text-sm">
+                      <h4 className="font-semibold text-card-foreground mb-2 px-10">Solución:</h4>
+                      <p className="text-muted-foreground text-sm px-10">
                         {caseStudy.solution}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="font-semibold text-card-foreground mb-2">Resultado:</h4>
-                      <p className="text-muted-foreground text-sm">
+                      <h4 className="font-semibold text-card-foreground mb-2 px-10">Resultado:</h4>
+                      <p className="text-muted-foreground text-sm px-10">
                         {caseStudy.result}
                       </p>
                     </div>
                   </div>
 
-                  {/* Metric Highlight */}
-                  <div className="mt-6 p-4 bg-gradient-primary rounded-lg">
-                    <div className="text-center">
-                      <p className="text-2xl font-bold text-primary-foreground">
+                  {/* Metric Highlight con los nuevos estilos y el ícono */}
+                  <div className="mt-12 flex items-center justify-center gap-4 p-6 bg-gradient-to-br from-blue-700 to-blue-950 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <IconComponent className="h-10 w-10 text-white drop-shadow-md" />
+                    <div className="text-white text-center">
+                      <p className="text-3xl font-bold leading-none">
                         {caseStudy.metric}
                       </p>
-                      <p className="text-sm text-primary-foreground/80">
+                      <p className="text-sm opacity-90">
                         {caseStudy.metricLabel}
                       </p>
                     </div>
