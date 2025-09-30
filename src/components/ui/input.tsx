@@ -1,22 +1,45 @@
 import * as React from "react"
-
 import { cn } from "@/lib/utils"
 
-const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
-  ({ className, type, ...props }, ref) => {
-    return (
+const Input = React.forwardRef<
+  HTMLInputElement,
+  React.ComponentProps<"input"> & { label: string }
+>(({ className, type = "text", label, id, ...props }, ref) => {
+  const [hasValue, setHasValue] = React.useState(false)
+  const [isFocused, setIsFocused] = React.useState(false)
+
+  return (
+    <div className="relative w-full mt-6">
       <input
+        id={id}
         type={type}
+        ref={ref}
         className={cn(
-          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          `peer w-full bg-transparent text-slate-700 text-base border border-slate-300 rounded-xl px-3 py-3 
+           transition duration-300 ease focus:outline-none focus:border-blue-600 hover:border-blue-500 shadow-sm focus:shadow`,
           className
         )}
-        ref={ref}
+        onChange={(e) => setHasValue(e.target.value !== "")}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         {...props}
       />
-    )
-  }
-)
-Input.displayName = "Input"
+      <label
+        htmlFor={id}
+        className={cn(
+          `absolute cursor-text bg-white px-1 left-3 transition-all transform origin-left duration-300`,
+          (isFocused || hasValue)
+            ? "-top-3 text-sm text-blue-600 scale-90" 
+            : "top-3 text-base text-slate-500"        
+        )}
+      >
+        {label}
+      </label>
+    </div>
+  )
+})
+
+Input.displayName = "FloatingInput"
 
 export { Input }
+
