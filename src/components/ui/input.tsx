@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils"
 const Input = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<"input"> & { label: string }
->(({ className, type = "text", label, id, ...props }, ref) => {
-  const [hasValue, setHasValue] = React.useState(false)
+>(({ className, type = "text", label,value, onChange, id, ...props }, ref) => {
   const [isFocused, setIsFocused] = React.useState(false)
 
+  const hasValue = value !== undefined && value !== null && value.toString().trim() !== ""
+
   return (
-    <div className="relative w-full mt-6">
+    <div className="relative w-full mt-4">
       <input
         id={id}
         type={type}
@@ -19,7 +20,8 @@ const Input = React.forwardRef<
            transition duration-300 ease focus:outline-none focus:border-blue-600 hover:border-blue-500 shadow-sm focus:shadow`,
           className
         )}
-        onChange={(e) => setHasValue(e.target.value !== "")}
+        value={value}
+        onChange={onChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         {...props}
