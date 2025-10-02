@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Phone, Mail, Calendar } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const ContactForm = () => {
+  const navigate = useNavigate();
+
   const handleContactClick = () => {
-    // This would typically open a Tally form or similar
-    window.open('https://tally.so/r/your-form-id', '_blank');
+    navigate("/Register");
   };
 
   return (
