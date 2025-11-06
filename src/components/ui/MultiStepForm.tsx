@@ -17,26 +17,43 @@ export default function MultiStepForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
 
-    if (type === "checkbox") {
-      let newArray = [...formData.inversionMensual];
-      if (checked) {
-        newArray.push(value);
-      } else {
-        newArray = newArray.filter(v => v !== value);
-      }
-      setFormData({ ...formData, inversionMensual: newArray });
-    } else if (type === "radio") {
-      setFormData({ ...formData, [name]: value });
+  if (type === "checkbox") {
+    let newArray = [...formData.inversionMensual];
+    if (checked) {
+      newArray.push(value);
     } else {
-      setFormData({ ...formData, [name]: value });
+      newArray = newArray.filter((v) => v !== value);
     }
-  };
+    setFormData({ ...formData, inversionMensual: newArray });
+  } else if (type === "radio") {
+    setFormData({ ...formData, [name]: value });
+  } else {
+    setFormData({ ...formData, [name]: value });
+  }
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Formulario enviado exitosamente. Revisa la consola para ver los datos.");
-  };
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyJKyD8MeSwZgvnUnuI51MBlQQQXstvf4raTkZm24Oy2xiKJyXrf1x1AaUP9Xb_EvwFKQ/exec";
+
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+    console.log("✅ Datos enviados:", result);
+    alert("Formulario enviado correctamente");
+  } catch (error) {
+    console.error("❌ Error:", error);
+    alert("Hubo un error al enviar el formulario");
+  }
+};
 
   const steps = [
     { label: "Información de contacto", shortLabel: "Personal" },
@@ -295,3 +312,4 @@ export default function MultiStepForm() {
 function cn(...inputs: (string | boolean | undefined)[]) {
   return inputs.filter(Boolean).join(" ");
 }
+
